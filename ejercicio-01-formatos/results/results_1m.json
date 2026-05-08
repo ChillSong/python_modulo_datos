@@ -1,0 +1,78 @@
+{
+  "size": "1m",
+  "n_rows": 1000000,
+  "seed": 42,
+  "repetitions": 3,
+  "selective_columns": [
+    "amount",
+    "category"
+  ],
+  "timestamp": "2026-05-08T03:18:14",
+  "results": [
+    {
+      "format": "csv",
+      "write_seconds_mean": 2.809914635333371,
+      "write_seconds_runs": [
+        2.763649127000008,
+        2.809241707000183,
+        2.8568530719999217
+      ],
+      "read_full_seconds": 1.4610233200000948,
+      "read_selective_seconds": 0.43773594300000696,
+      "file_size_bytes": 96646785,
+      "read_peak_memory_bytes": 242992031
+    },
+    {
+      "format": "jsonl",
+      "write_seconds_mean": 2.4404995660000472,
+      "write_seconds_runs": [
+        2.4592185430001336,
+        2.446644011999979,
+        2.415636143000029
+      ],
+      "read_full_seconds": 4.008320181999807,
+      "read_selective_seconds": 4.014414755999951,
+      "file_size_bytes": 209646704,
+      "read_peak_memory_bytes": 2566757715
+    },
+    {
+      "format": "parquet_none",
+      "write_seconds_mean": 0.2030237036666828,
+      "write_seconds_runs": [
+        0.2056610439999531,
+        0.20101073800015,
+        0.20239932899994528
+      ],
+      "read_full_seconds": 0.09409223700004077,
+      "read_selective_seconds": 0.026523178999923402,
+      "file_size_bytes": 61733634,
+      "read_peak_memory_bytes": 19702
+    },
+    {
+      "format": "parquet_snappy",
+      "write_seconds_mean": 0.3595511753333085,
+      "write_seconds_runs": [
+        0.3504862489999141,
+        0.37974540599998363,
+        0.34842187100002775
+      ],
+      "read_full_seconds": 0.13330313899996327,
+      "read_selective_seconds": 0.035449000999960845,
+      "file_size_bytes": 54178902,
+      "read_peak_memory_bytes": 19702
+    },
+    {
+      "format": "parquet_gzip",
+      "write_seconds_mean": 7.437878834333333,
+      "write_seconds_runs": [
+        7.592504544999883,
+        7.297322877999704,
+        7.42380908000041
+      ],
+      "read_full_seconds": 0.26224744999990435,
+      "read_selective_seconds": 0.03175461599994378,
+      "file_size_bytes": 36922177,
+      "read_peak_memory_bytes": 19702
+    }
+  ]
+}
