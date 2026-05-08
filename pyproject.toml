@@ -1,0 +1,21 @@
+[project]
+name = "python-modulo-datos"
+version = "0.1.0"
+description = "Modulo: Python para Sistemas de Datos Modernos — Storage, Query, Pipelines, Serving"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.5.2",
+    "fastapi>=0.136.1",
+    "httpx>=0.28.1",
+    "matplotlib>=3.10.9",
+    "pandas>=3.0.2",
+    "polars>=1.40.1",
+    "pyarrow>=24.0.0",
+    "uvicorn>=0.46.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]

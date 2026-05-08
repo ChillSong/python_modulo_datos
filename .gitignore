@@ -1,0 +1,31 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Datasets generados (NO se suben al repo)
+data/
+
+# Archivos de datos en cualquier ubicación
+*.csv
+*.parquet
+*.json.gz
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Archivos de resultados en raíz del exercise NO se ignoran:
+# las carpetas results/ son entregables y deben commitearse,
+# por eso *.json NO está en este .gitignore.
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
