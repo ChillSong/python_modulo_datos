@@ -1,0 +1,556 @@
+{
+  "timestamp": "2026-05-11T23:10:09",
+  "parquet": "/home/chillsong/Escritorio/python_modulo_datos/data/benchmark_1m/transactions.snappy.parquet",
+  "engines": [
+    "pandas",
+    "duckdb",
+    "polars"
+  ],
+  "queries": [
+    "q1",
+    "q2",
+    "q3",
+    "q4",
+    "q5",
+    "q6",
+    "q7",
+    "q8"
+  ],
+  "repetitions": 5,
+  "load_seconds": {
+    "pandas": 0.13640926200059766,
+    "duckdb": 0.00836641900059476,
+    "polars": 0.00021400499917945126
+  },
+  "per_query": {
+    "q1": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.025257276999946045,
+          "time_min_seconds": 0.023866184999860707,
+          "time_runs_seconds": [
+            0.03017923500010511,
+            0.024081434999970952,
+            0.023866184999860707,
+            0.024066967999715416,
+            0.024092562000078033
+          ],
+          "peak_python_memory_bytes": 17010552,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "n_transactions"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.009647891399799846,
+          "time_min_seconds": 0.009161705999758851,
+          "time_runs_seconds": [
+            0.010634751999532455,
+            0.009161705999758851,
+            0.009625288999814074,
+            0.009274496999751136,
+            0.009543213000142714
+          ],
+          "peak_python_memory_bytes": 77461,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "n_transactions"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.008040519399946789,
+          "time_min_seconds": 0.006118540999523248,
+          "time_runs_seconds": [
+            0.014411097000447626,
+            0.006886860999657074,
+            0.006598728999961168,
+            0.006118540999523248,
+            0.006187369000144827
+          ],
+          "peak_python_memory_bytes": 19547,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "n_transactions"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q2": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.032638918799784734,
+          "time_min_seconds": 0.03139802099940425,
+          "time_runs_seconds": [
+            0.0334549839999454,
+            0.03194679900025221,
+            0.03139802099940425,
+            0.03338716799953545,
+            0.03300762199978635
+          ],
+          "peak_python_memory_bytes": 16012188,
+          "rows_returned": 10,
+          "columns_returned": [
+            "category",
+            "avg_amount",
+            "min_amount",
+            "max_amount"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.02813929160020052,
+          "time_min_seconds": 0.02703479000047082,
+          "time_runs_seconds": [
+            0.027824452000459132,
+            0.027522157000021252,
+            0.02703479000047082,
+            0.030696587999955227,
+            0.02761847100009618
+          ],
+          "peak_python_memory_bytes": 149113,
+          "rows_returned": 10,
+          "columns_returned": [
+            "category",
+            "avg_amount",
+            "min_amount",
+            "max_amount"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.017268007600250712,
+          "time_min_seconds": 0.014568452000276011,
+          "time_runs_seconds": [
+            0.01671565800006647,
+            0.02135593900038657,
+            0.014568452000276011,
+            0.015906122000160394,
+            0.017793867000364116
+          ],
+          "peak_python_memory_bytes": 3654,
+          "rows_returned": 10,
+          "columns_returned": [
+            "category",
+            "avg_amount",
+            "min_amount",
+            "max_amount"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q3": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.035326984000130325,
+          "time_min_seconds": 0.03449739099960425,
+          "time_runs_seconds": [
+            0.03563656300048024,
+            0.03449739099960425,
+            0.03572317199996178,
+            0.035691773000507965,
+            0.03508602100009739
+          ],
+          "peak_python_memory_bytes": 33971703,
+          "rows_returned": 10,
+          "columns_returned": [
+            "user_id",
+            "total_amount",
+            "n_transactions"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.0774174325997592,
+          "time_min_seconds": 0.07193939699936891,
+          "time_runs_seconds": [
+            0.08561647899932723,
+            0.07193939699936891,
+            0.07556537099935667,
+            0.08175973600009456,
+            0.0722061800006486
+          ],
+          "peak_python_memory_bytes": 95187,
+          "rows_returned": 10,
+          "columns_returned": [
+            "user_id",
+            "total_amount",
+            "n_transactions"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.02316366859995469,
+          "time_min_seconds": 0.021467081000082544,
+          "time_runs_seconds": [
+            0.02593467899987445,
+            0.021467081000082544,
+            0.023059987000124238,
+            0.021690284999749565,
+            0.023666310999942652
+          ],
+          "peak_python_memory_bytes": 3238,
+          "rows_returned": 10,
+          "columns_returned": [
+            "user_id",
+            "total_amount",
+            "n_transactions"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q4": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.03481415899968852,
+          "time_min_seconds": 0.02855308200014406,
+          "time_runs_seconds": [
+            0.05055646999971941,
+            0.02855308200014406,
+            0.03037786199911352,
+            0.03057617099966592,
+            0.03400720999979967
+          ],
+          "peak_python_memory_bytes": 5973287,
+          "rows_returned": 24,
+          "columns_returned": [
+            "hour",
+            "n_failed"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.018690558199887165,
+          "time_min_seconds": 0.01741474000027665,
+          "time_runs_seconds": [
+            0.02283939900007681,
+            0.01741474000027665,
+            0.017530277000332717,
+            0.018186552999395644,
+            0.017481821999353997
+          ],
+          "peak_python_memory_bytes": 58131,
+          "rows_returned": 24,
+          "columns_returned": [
+            "hour",
+            "n_failed"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.011025119599980825,
+          "time_min_seconds": 0.010468456000126025,
+          "time_runs_seconds": [
+            0.011519425999722444,
+            0.010848556999917491,
+            0.011417202000302495,
+            0.010871956999835675,
+            0.010468456000126025
+          ],
+          "peak_python_memory_bytes": 3389,
+          "rows_returned": 24,
+          "columns_returned": [
+            "hour",
+            "n_failed"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q5": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.03048209139997198,
+          "time_min_seconds": 0.02686286499920243,
+          "time_runs_seconds": [
+            0.0345343650005816,
+            0.0335042370006704,
+            0.030308229999718606,
+            0.027200759999686852,
+            0.02686286499920243
+          ],
+          "peak_python_memory_bytes": 5007349,
+          "rows_returned": 10014,
+          "columns_returned": [
+            "transaction_id",
+            "timestamp",
+            "user_id",
+            "merchant_id",
+            "amount",
+            "category",
+            "country_code",
+            "status"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.10306259580011101,
+          "time_min_seconds": 0.10030134899989207,
+          "time_runs_seconds": [
+            0.1060569969995413,
+            0.10474593800063303,
+            0.10030134899989207,
+            0.10333896700012701,
+            0.10086972800036165
+          ],
+          "peak_python_memory_bytes": 3309943,
+          "rows_returned": 10014,
+          "columns_returned": [
+            "transaction_id",
+            "timestamp",
+            "user_id",
+            "merchant_id",
+            "amount",
+            "category",
+            "country_code",
+            "status"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.06178536719999102,
+          "time_min_seconds": 0.05919403899952158,
+          "time_runs_seconds": [
+            0.06305062200044631,
+            0.05919403899952158,
+            0.06036190900067595,
+            0.06443833899993479,
+            0.061881926999376446
+          ],
+          "peak_python_memory_bytes": 20565,
+          "rows_returned": 10014,
+          "columns_returned": [
+            "transaction_id",
+            "timestamp",
+            "user_id",
+            "merchant_id",
+            "amount",
+            "category",
+            "country_code",
+            "status"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q6": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.07362680280002679,
+          "time_min_seconds": 0.07077461599965318,
+          "time_runs_seconds": [
+            0.07462256400049228,
+            0.07077461599965318,
+            0.07432737199997064,
+            0.07412772600036988,
+            0.07428173599964794
+          ],
+          "peak_python_memory_bytes": 74844279,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "category",
+            "n_transactions",
+            "avg_amount"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.03932507179979439,
+          "time_min_seconds": 0.0360136400004194,
+          "time_runs_seconds": [
+            0.03678490799939027,
+            0.0360136400004194,
+            0.039496176999819,
+            0.04192354799943132,
+            0.04240708599991194
+          ],
+          "peak_python_memory_bytes": 149983,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "category",
+            "n_transactions",
+            "avg_amount"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.03022806139979366,
+          "time_min_seconds": 0.025764946999515814,
+          "time_runs_seconds": [
+            0.039124865000303544,
+            0.029983919999722275,
+            0.02682217099936679,
+            0.029444404000059876,
+            0.025764946999515814
+          ],
+          "peak_python_memory_bytes": 3206,
+          "rows_returned": 15,
+          "columns_returned": [
+            "country_code",
+            "category",
+            "n_transactions",
+            "avg_amount"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q7": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.03672297939992859,
+          "time_min_seconds": 0.03087028600020858,
+          "time_runs_seconds": [
+            0.04250527899966983,
+            0.03087028600020858,
+            0.030943947000196204,
+            0.03236820300026011,
+            0.04692718199930823
+          ],
+          "peak_python_memory_bytes": 6090434,
+          "rows_returned": 833,
+          "columns_returned": [
+            "user_id",
+            "n_failed"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.016245960600099352,
+          "time_min_seconds": 0.01521263100039505,
+          "time_runs_seconds": [
+            0.0180704770000375,
+            0.016533783000340918,
+            0.01521263100039505,
+            0.015646408000066003,
+            0.01576650399965729
+          ],
+          "peak_python_memory_bytes": 58131,
+          "rows_returned": 833,
+          "columns_returned": [
+            "user_id",
+            "n_failed"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.005357064199961315,
+          "time_min_seconds": 0.004924298000332783,
+          "time_runs_seconds": [
+            0.005657795999468362,
+            0.0049518189998707385,
+            0.005901683000047342,
+            0.004924298000332783,
+            0.005349725000087346
+          ],
+          "peak_python_memory_bytes": 2686,
+          "rows_returned": 833,
+          "columns_returned": [
+            "user_id",
+            "n_failed"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    },
+    "q8": {
+      "engines": {
+        "pandas": {
+          "time_mean_seconds": 0.06345156400002452,
+          "time_min_seconds": 0.06083376900005533,
+          "time_runs_seconds": [
+            0.06693838000046526,
+            0.06083376900005533,
+            0.06229544799953146,
+            0.062065592000180914,
+            0.06512463099988963
+          ],
+          "peak_python_memory_bytes": 82964979,
+          "rows_returned": 3660,
+          "columns_returned": [
+            "day",
+            "category",
+            "avg_amount"
+          ]
+        },
+        "duckdb": {
+          "time_mean_seconds": 0.0663179229997695,
+          "time_min_seconds": 0.059902484999838634,
+          "time_runs_seconds": [
+            0.06571186099972692,
+            0.06612685300024168,
+            0.059902484999838634,
+            0.07157942799949524,
+            0.06826898799954506
+          ],
+          "peak_python_memory_bytes": 440566,
+          "rows_returned": 3660,
+          "columns_returned": [
+            "day",
+            "category",
+            "avg_amount"
+          ]
+        },
+        "polars": {
+          "time_mean_seconds": 0.03811046020000504,
+          "time_min_seconds": 0.03345225500015658,
+          "time_runs_seconds": [
+            0.04531932000008965,
+            0.0411877070000628,
+            0.03576566500032641,
+            0.03345225500015658,
+            0.03482735399938974
+          ],
+          "peak_python_memory_bytes": 2670,
+          "rows_returned": 3660,
+          "columns_returned": [
+            "day",
+            "category",
+            "avg_amount"
+          ]
+        }
+      },
+      "equivalent": true,
+      "equivalence_pairs": {
+        "pandas_vs_duckdb": true,
+        "pandas_vs_polars": true,
+        "duckdb_vs_polars": true
+      }
+    }
+  },
+  "explain_analyze": {
+    "q3": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502    Query Profiling Information    \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\nEXPLAIN ANALYZE          SELECT user_id,                SUM(amount) AS total_amount,                COUNT(*)    AS n_transactions         FROM txns         GROUP BY user_id         ORDER BY total_amount DESC, user_id ASC         LIMIT 10     \n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502              Total Time: 0.0708s             \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           QUERY           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502      EXPLAIN_ANALYZE      \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502                           \u2502\n\u2502           0 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           TOP_N           \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502          Top: 10          \u2502\n\u2502                           \u2502\n\u2502         Order By:         \u2502\n\u2502    sum(memory.main.txns   \u2502\n\u2502       .amount) DESC       \u2502\n\u2502  memory.main.txns.user_id \u2502\n\u2502             ASC           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          10 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502__internal_decompress_integ\u2502\n\u2502     ral_integer(#0, 1)    \u2502\n\u2502             #1            \u2502\n\u2502             #2            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        50,000 rows        \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502       HASH_GROUP_BY       \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502         Groups: #0        \u2502\n\u2502                           \u2502\n\u2502        Aggregates:        \u2502\n\u2502          sum(#1)          \u2502\n\u2502        count_star()       \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        50,000 rows        \u2502\n\u2502           0.07s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502          user_id          \u2502\n\u2502           amount          \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502       1,000,000 rows      \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502__internal_compress_integra\u2502\n\u2502     l_usmallint(#0, 1)    \u2502\n\u2502             #1            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502       1,000,000 rows      \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         TABLE_SCAN        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502         Function:         \u2502\n\u2502        READ_PARQUET       \u2502\n\u2502                           \u2502\n\u2502        Projections:       \u2502\n\u2502          user_id          \u2502\n\u2502           amount          \u2502\n\u2502                           \u2502\n\u2502    Total Files Read: 1    \u2502\n\u2502                           \u2502\n\u2502        Filename(s):       \u2502\n\u2502 /home/chillsong/Escritorio\u2502\n\u2502 /python_modulo_datos/data \u2502\n\u2502 /benchmark_1m/transactions\u2502\n\u2502      .snappy.parquet      \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502       1,000,000 rows      \u2502\n\u2502           0.01s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n",
+    "q5": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502    Query Profiling Information    \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\nEXPLAIN ANALYZE          WITH bounds AS (SELECT MAX(timestamp) AS max_ts FROM txns)         SELECT t.*         FROM txns t, bounds b         WHERE t.amount > 500           AND t.country_code IN ('MX', 'CO')           AND t.timestamp >= b.max_ts - INTERVAL 30 DAY         ORDER BY t.transaction_id     \n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502              Total Time: 0.0846s             \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           QUERY           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502      EXPLAIN_ANALYZE      \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502                           \u2502\n\u2502           0 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502             #0            \u2502\n\u2502             #1            \u2502\n\u2502__internal_decompress_integ\u2502\n\u2502     ral_integer(#2, 1)    \u2502\n\u2502__internal_decompress_integ\u2502\n\u2502     ral_integer(#3, 1)    \u2502\n\u2502             #4            \u2502\n\u2502             #5            \u2502\n\u2502             #6            \u2502\n\u2502             #7            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        10,014 rows        \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502          ORDER_BY         \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502    t.transaction_id ASC   \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        10,014 rows        \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502             #0            \u2502\n\u2502             #1            \u2502\n\u2502__internal_compress_integra\u2502\n\u2502     l_usmallint(#2, 1)    \u2502\n\u2502__internal_compress_integra\u2502\n\u2502     l_usmallint(#3, 1)    \u2502\n\u2502             #4            \u2502\n\u2502             #5            \u2502\n\u2502             #6            \u2502\n\u2502             #7            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        10,014 rows        \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502       transaction_id      \u2502\n\u2502         timestamp         \u2502\n\u2502          user_id          \u2502\n\u2502        merchant_id        \u2502\n\u2502           amount          \u2502\n\u2502          category         \u2502\n\u2502        country_code       \u2502\n\u2502           status          \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        10,014 rows        \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502      NESTED_LOOP_JOIN     \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502      Join Type: INNER     \u2502\n\u2502                           \u2502\n\u2502        Conditions:        \u2502\n\u2502 timestamp >= (max_ts - '30\u2502\n\u2502      days'::INTERVAL)     \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502                           \u2502              \u2502\n\u2502                           \u2502              \u2502\n\u2502                           \u2502              \u2502\n\u2502        10,014 rows        \u2502              \u2502\n\u2502           0.00s           \u2502              \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518              \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           FILTER          \u2502\u2502      COLUMN_DATA_SCAN     \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\u2502                           \u2502\n\u2502 ((country_code = 'MX') OR \u2502\u2502                           \u2502\n\u2502   (country_code = 'CO'))  \u2502\u2502           0.00s           \u2502\n\u2502                           \u2502\u2502                           \u2502\n\u2502                           \u2502\u2502                           \u2502\n\u2502                           \u2502\u2502                           \u2502\n\u2502        10,014 rows        \u2502\u2502           1 row           \u2502\n\u2502           0.00s           \u2502\u2502          (0.00s)          \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         TABLE_SCAN        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502         Function:         \u2502\n\u2502        READ_PARQUET       \u2502\n\u2502                           \u2502\n\u2502        Projections:       \u2502\n\u2502       transaction_id      \u2502\n\u2502         timestamp         \u2502\n\u2502          user_id          \u2502\n\u2502        merchant_id        \u2502\n\u2502           amount          \u2502\n\u2502          category         \u2502\n\u2502        country_code       \u2502\n\u2502           status          \u2502\n\u2502                           \u2502\n\u2502          Filters:         \u2502\n\u2502        amount>500.0       \u2502\n\u2502 optional: country_code IN \u2502\n\u2502        ('MX', 'CO')       \u2502\n\u2502                           \u2502\n\u2502      Dynamic Filters:     \u2502\n\u2502 timestamp>='2026-04-08 03 \u2502\n\u2502     :16:16'::TIMESTAMP    \u2502\n\u2502                           \u2502\n\u2502    Total Files Read: 1    \u2502\n\u2502                           \u2502\n\u2502        Filename(s):       \u2502\n\u2502 /home/chillsong/Escritorio\u2502\n\u2502 /python_modulo_datos/data \u2502\n\u2502 /benchmark_1m/transactions\u2502\n\u2502      .snappy.parquet      \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502        73,900 rows        \u2502\n\u2502           0.08s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n",
+    "q6": "\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502    Query Profiling Information    \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\nEXPLAIN ANALYZE          WITH counts AS (             SELECT country_code, category,                    COUNT(*)  AS n_transactions,                    AVG(amount) AS avg_amount             FROM txns             GROUP BY country_code, category         ),         ranked AS (             SELECT *,                    ROW_NUMBER() OVER (                        PARTITION BY country_code                        ORDER BY n_transactions DESC, category ASC                    ) AS rn             FROM counts         )         SELECT country_code, category, n_transactions, avg_amount         FROM ranked         WHERE rn = 1         ORDER BY country_code     \n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\u2502\n\u2502\u2502              Total Time: 0.0421s             \u2502\u2502\n\u2502\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           QUERY           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502      EXPLAIN_ANALYZE      \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502                           \u2502\n\u2502           0 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502          ORDER_BY         \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502  ranked.country_code ASC  \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          15 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502             #0            \u2502\n\u2502             #1            \u2502\n\u2502             #2            \u2502\n\u2502             #3            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          15 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           FILTER          \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502          (rn = 1)         \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          15 rows          \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502             #0            \u2502\n\u2502             #1            \u2502\n\u2502             #2            \u2502\n\u2502             #3            \u2502\n\u2502             #4            \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          150 rows         \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502           WINDOW          \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502        Projections:       \u2502\n\u2502     ROW_NUMBER() OVER     \u2502\n\u2502 (PARTITION BY country_code\u2502\n\u2502   ORDER BY n_transactions \u2502\n\u2502  DESC NULLS LAST, category\u2502\n\u2502       ASC NULLS LAST)     \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          150 rows         \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502       HASH_GROUP_BY       \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502          Groups:          \u2502\n\u2502             #0            \u2502\n\u2502             #1            \u2502\n\u2502                           \u2502\n\u2502        Aggregates:        \u2502\n\u2502        count_star()       \u2502\n\u2502          avg(#2)          \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502          150 rows         \u2502\n\u2502           0.03s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         PROJECTION        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502        country_code       \u2502\n\u2502          category         \u2502\n\u2502           amount          \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502       1,000,000 rows      \u2502\n\u2502           0.00s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502         TABLE_SCAN        \u2502\n\u2502    \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2502\n\u2502         Function:         \u2502\n\u2502        READ_PARQUET       \u2502\n\u2502                           \u2502\n\u2502        Projections:       \u2502\n\u2502           amount          \u2502\n\u2502          category         \u2502\n\u2502        country_code       \u2502\n\u2502                           \u2502\n\u2502    Total Files Read: 1    \u2502\n\u2502                           \u2502\n\u2502        Filename(s):       \u2502\n\u2502 /home/chillsong/Escritorio\u2502\n\u2502 /python_modulo_datos/data \u2502\n\u2502 /benchmark_1m/transactions\u2502\n\u2502      .snappy.parquet      \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502                           \u2502\n\u2502       1,000,000 rows      \u2502\n\u2502           0.01s           \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n"
+  }
+}

@@ -1,0 +1,401 @@
+=== q3 ===
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+EXPLAIN ANALYZE          SELECT user_id,                SUM(amount) AS total_amount,                COUNT(*)    AS n_transactions         FROM txns         GROUP BY user_id         ORDER BY total_amount DESC, user_id ASC         LIMIT 10     
+┌────────────────────────────────────────────────┐
+│┌──────────────────────────────────────────────┐│
+││              Total Time: 0.0708s             ││
+│└──────────────────────────────────────────────┘│
+└────────────────────────────────────────────────┘
+┌───────────────────────────┐
+│           QUERY           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│    ────────────────────   │
+│                           │
+│           0 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│           TOP_N           │
+│    ────────────────────   │
+│          Top: 10          │
+│                           │
+│         Order By:         │
+│    sum(memory.main.txns   │
+│       .amount) DESC       │
+│  memory.main.txns.user_id │
+│             ASC           │
+│                           │
+│                           │
+│                           │
+│          10 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│__internal_decompress_integ│
+│     ral_integer(#0, 1)    │
+│             #1            │
+│             #2            │
+│                           │
+│                           │
+│                           │
+│        50,000 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│         Groups: #0        │
+│                           │
+│        Aggregates:        │
+│          sum(#1)          │
+│        count_star()       │
+│                           │
+│                           │
+│                           │
+│        50,000 rows        │
+│           0.07s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│          user_id          │
+│           amount          │
+│                           │
+│                           │
+│                           │
+│       1,000,000 rows      │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│__internal_compress_integra│
+│     l_usmallint(#0, 1)    │
+│             #1            │
+│                           │
+│                           │
+│                           │
+│       1,000,000 rows      │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         TABLE_SCAN        │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│        Projections:       │
+│          user_id          │
+│           amount          │
+│                           │
+│    Total Files Read: 1    │
+│                           │
+│        Filename(s):       │
+│ /home/chillsong/Escritorio│
+│ /python_modulo_datos/data │
+│ /benchmark_1m/transactions│
+│      .snappy.parquet      │
+│                           │
+│                           │
+│                           │
+│       1,000,000 rows      │
+│           0.01s           │
+└───────────────────────────┘
+
+
+=== q5 ===
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+EXPLAIN ANALYZE          WITH bounds AS (SELECT MAX(timestamp) AS max_ts FROM txns)         SELECT t.*         FROM txns t, bounds b         WHERE t.amount > 500           AND t.country_code IN ('MX', 'CO')           AND t.timestamp >= b.max_ts - INTERVAL 30 DAY         ORDER BY t.transaction_id     
+┌────────────────────────────────────────────────┐
+│┌──────────────────────────────────────────────┐│
+││              Total Time: 0.0846s             ││
+│└──────────────────────────────────────────────┘│
+└────────────────────────────────────────────────┘
+┌───────────────────────────┐
+│           QUERY           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│    ────────────────────   │
+│                           │
+│           0 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│             #0            │
+│             #1            │
+│__internal_decompress_integ│
+│     ral_integer(#2, 1)    │
+│__internal_decompress_integ│
+│     ral_integer(#3, 1)    │
+│             #4            │
+│             #5            │
+│             #6            │
+│             #7            │
+│                           │
+│                           │
+│                           │
+│        10,014 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│    t.transaction_id ASC   │
+│                           │
+│                           │
+│                           │
+│        10,014 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│             #0            │
+│             #1            │
+│__internal_compress_integra│
+│     l_usmallint(#2, 1)    │
+│__internal_compress_integra│
+│     l_usmallint(#3, 1)    │
+│             #4            │
+│             #5            │
+│             #6            │
+│             #7            │
+│                           │
+│                           │
+│                           │
+│        10,014 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│       transaction_id      │
+│         timestamp         │
+│          user_id          │
+│        merchant_id        │
+│           amount          │
+│          category         │
+│        country_code       │
+│           status          │
+│                           │
+│                           │
+│                           │
+│        10,014 rows        │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      NESTED_LOOP_JOIN     │
+│    ────────────────────   │
+│      Join Type: INNER     │
+│                           │
+│        Conditions:        │
+│ timestamp >= (max_ts - '30│
+│      days'::INTERVAL)     ├──────────────┐
+│                           │              │
+│                           │              │
+│                           │              │
+│        10,014 rows        │              │
+│           0.00s           │              │
+└─────────────┬─────────────┘              │
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│           FILTER          ││      COLUMN_DATA_SCAN     │
+│    ────────────────────   ││                           │
+│ ((country_code = 'MX') OR ││                           │
+│   (country_code = 'CO'))  ││           0.00s           │
+│                           ││                           │
+│                           ││                           │
+│                           ││                           │
+│        10,014 rows        ││           1 row           │
+│           0.00s           ││          (0.00s)          │
+└─────────────┬─────────────┘└───────────────────────────┘
+┌─────────────┴─────────────┐
+│         TABLE_SCAN        │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│        Projections:       │
+│       transaction_id      │
+│         timestamp         │
+│          user_id          │
+│        merchant_id        │
+│           amount          │
+│          category         │
+│        country_code       │
+│           status          │
+│                           │
+│          Filters:         │
+│        amount>500.0       │
+│ optional: country_code IN │
+│        ('MX', 'CO')       │
+│                           │
+│      Dynamic Filters:     │
+│ timestamp>='2026-04-08 03 │
+│     :16:16'::TIMESTAMP    │
+│                           │
+│    Total Files Read: 1    │
+│                           │
+│        Filename(s):       │
+│ /home/chillsong/Escritorio│
+│ /python_modulo_datos/data │
+│ /benchmark_1m/transactions│
+│      .snappy.parquet      │
+│                           │
+│                           │
+│                           │
+│        73,900 rows        │
+│           0.08s           │
+└───────────────────────────┘
+
+
+=== q6 ===
+┌─────────────────────────────────────┐
+│┌───────────────────────────────────┐│
+││    Query Profiling Information    ││
+│└───────────────────────────────────┘│
+└─────────────────────────────────────┘
+EXPLAIN ANALYZE          WITH counts AS (             SELECT country_code, category,                    COUNT(*)  AS n_transactions,                    AVG(amount) AS avg_amount             FROM txns             GROUP BY country_code, category         ),         ranked AS (             SELECT *,                    ROW_NUMBER() OVER (                        PARTITION BY country_code                        ORDER BY n_transactions DESC, category ASC                    ) AS rn             FROM counts         )         SELECT country_code, category, n_transactions, avg_amount         FROM ranked         WHERE rn = 1         ORDER BY country_code     
+┌────────────────────────────────────────────────┐
+│┌──────────────────────────────────────────────┐│
+││              Total Time: 0.0421s             ││
+│└──────────────────────────────────────────────┘│
+└────────────────────────────────────────────────┘
+┌───────────────────────────┐
+│           QUERY           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│      EXPLAIN_ANALYZE      │
+│    ────────────────────   │
+│                           │
+│           0 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│  ranked.country_code ASC  │
+│                           │
+│                           │
+│                           │
+│          15 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│             #0            │
+│             #1            │
+│             #2            │
+│             #3            │
+│                           │
+│                           │
+│                           │
+│          15 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│           FILTER          │
+│    ────────────────────   │
+│          (rn = 1)         │
+│                           │
+│                           │
+│                           │
+│          15 rows          │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│             #0            │
+│             #1            │
+│             #2            │
+│             #3            │
+│             #4            │
+│                           │
+│                           │
+│                           │
+│          150 rows         │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│           WINDOW          │
+│    ────────────────────   │
+│        Projections:       │
+│     ROW_NUMBER() OVER     │
+│ (PARTITION BY country_code│
+│   ORDER BY n_transactions │
+│  DESC NULLS LAST, category│
+│       ASC NULLS LAST)     │
+│                           │
+│                           │
+│                           │
+│          150 rows         │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│          Groups:          │
+│             #0            │
+│             #1            │
+│                           │
+│        Aggregates:        │
+│        count_star()       │
+│          avg(#2)          │
+│                           │
+│                           │
+│                           │
+│          150 rows         │
+│           0.03s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│        country_code       │
+│          category         │
+│           amount          │
+│                           │
+│                           │
+│                           │
+│       1,000,000 rows      │
+│           0.00s           │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         TABLE_SCAN        │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│        Projections:       │
+│           amount          │
+│          category         │
+│        country_code       │
+│                           │
+│    Total Files Read: 1    │
+│                           │
+│        Filename(s):       │
+│ /home/chillsong/Escritorio│
+│ /python_modulo_datos/data │
+│ /benchmark_1m/transactions│
+│      .snappy.parquet      │
+│                           │
+│                           │
+│                           │
+│       1,000,000 rows      │
+│           0.01s           │
+└───────────────────────────┘
