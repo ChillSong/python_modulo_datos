@@ -1,0 +1,32 @@
+{
+  "runs": [
+    {
+      "total_rows": 1000000,
+      "total_seconds": 15.931601838999995,
+      "chunk_count": 20,
+      "chunk_seconds_mean": 0.24783661430001303,
+      "chunk_seconds_min": 0.1389454449999903,
+      "chunk_seconds_max": 0.33593723899957695,
+      "parquet": "/home/chillsong/Escritorio/python_modulo_datos/data/benchmark_1m/transactions.snappy.parquet",
+      "db": "db/transactions_wal.db",
+      "chunk_size": 50000,
+      "wal": true,
+      "db_bytes_after_ingest": 160014336,
+      "timestamp": "2026-05-15T15:44:12"
+    },
+    {
+      "total_rows": 1000000,
+      "total_seconds": 16.139449711000452,
+      "chunk_count": 20,
+      "chunk_seconds_mean": 0.249332634449911,
+      "chunk_seconds_min": 0.12785991500004457,
+      "chunk_seconds_max": 0.3281886230006421,
+      "parquet": "/home/chillsong/Escritorio/python_modulo_datos/data/benchmark_1m/transactions.snappy.parquet",
+      "db": "db/transactions_nowal.db",
+      "chunk_size": 50000,
+      "wal": false,
+      "db_bytes_after_ingest": 160014336,
+      "timestamp": "2026-05-15T15:44:33"
+    }
+  ]
+}

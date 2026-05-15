@@ -1,0 +1,258 @@
+=== P1 — Buscar una transaccion por transaction_id exacto ===
+
+-- SQL (SQLite) --
+SELECT * FROM transactions WHERE transaction_id = ?
+
+-- SIN indices --
+  [3|0] SEARCH transactions USING INDEX sqlite_autoindex_transactions_1 (transaction_id=?)
+
+-- CON indices --
+  [3|0] SEARCH transactions USING INDEX sqlite_autoindex_transactions_1 (transaction_id=?)
+
+-- DuckDB EXPLAIN --
+┌───────────────────────────┐
+│        READ_PARQUET       │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│        Projections:       │
+│       transaction_id      │
+│         timestamp         │
+│          user_id          │
+│        merchant_id        │
+│           amount          │
+│          category         │
+│        country_code       │
+│           status          │
+│                           │
+│          Filters:         │
+│  transaction_id='7b616356 │
+│      -e23c-47e7-b2e9      │
+│       -6b1ebdc78646'      │
+│                           │
+│       ~200,000 rows       │
+└───────────────────────────┘
+
+
+
+=== P2 — Ultimas 20 transacciones de un user_id ordenadas por timestamp DESC ===
+
+-- SQL (SQLite) --
+SELECT * FROM transactions WHERE user_id = ? ORDER BY timestamp DESC LIMIT 20
+
+-- SIN indices --
+  [4|0] SCAN transactions
+  [25|0] USE TEMP B-TREE FOR ORDER BY
+
+-- CON indices --
+  [5|0] SEARCH transactions USING INDEX idx_txns_user_timestamp (user_id=?)
+
+-- DuckDB EXPLAIN --
+┌───────────────────────────┐
+│          ORDER_BY         │
+│    ────────────────────   │
+│     memory.main.txns.     │
+│      "timestamp" DESC     │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         HASH_JOIN         │
+│    ────────────────────   │
+│      Join Type: SEMI      │
+│                           │
+│        Conditions:        │
+│  file_index = file_index  ├──────────────┐
+│     file_row_number =     │              │
+│       file_row_number     │              │
+│                           │              │
+│          ~0 rows          │              │
+└─────────────┬─────────────┘              │
+┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+│        READ_PARQUET       ││           TOP_N           │
+│    ────────────────────   ││    ────────────────────   │
+│         Function:         ││          Top: 20          │
+│        READ_PARQUET       ││                           │
+│                           ││         Order By:         │
+│        Projections:       ││     memory.main.txns.     │
+│       transaction_id      ││      "timestamp" DESC     │
+│         timestamp         ││                           │
+│          user_id          ││                           │
+│        merchant_id        ││                           │
+│           amount          ││                           │
+│          category         ││                           │
+│        country_code       ││                           │
+│           status          ││                           │
+│                           ││                           │
+│      ~1,000,000 rows      ││                           │
+└───────────────────────────┘└─────────────┬─────────────┘
+                             ┌─────────────┴─────────────┐
+                             │        READ_PARQUET       │
+                             │    ────────────────────   │
+                             │         Function:         │
+                             │        READ_PARQUET       │
+                             │                           │
+                             │        Projections:       │
+                             │         timestamp         │
+                             │                           │
+                             │          Filters:         │
+                             │ optional: Dynamic Filter  │
+                             │        (timestamp)        │
+                             │       user_id=39634       │
+                             │                           │
+                             │       ~200,000 rows       │
+                             └───────────────────────────┘
+
+
+
+=== P3 — Transacciones de un user_id en un rango de fechas ===
+
+-- SQL (SQLite) --
+SELECT * FROM transactions WHERE user_id = ? AND timestamp >= ? AND timestamp < ?
+
+-- SIN indices --
+  [2|0] SCAN transactions
+
+-- CON indices --
+  [3|0] SEARCH transactions USING INDEX idx_txns_user_timestamp (user_id=? AND timestamp>? AND timestamp<?)
+
+-- DuckDB EXPLAIN --
+┌───────────────────────────┐
+│        READ_PARQUET       │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│        Projections:       │
+│       transaction_id      │
+│         timestamp         │
+│          user_id          │
+│        merchant_id        │
+│           amount          │
+│          category         │
+│        country_code       │
+│           status          │
+│                           │
+│          Filters:         │
+│ timestamp>='2026-04-23 15 │
+│   :06:00'::TIMESTAMP AND  │
+│  timestamp<'2026-04-30 15 │
+│     :06:00'::TIMESTAMP    │
+│       user_id=28137       │
+│                           │
+│       ~200,000 rows       │
+└───────────────────────────┘
+
+
+
+=== P4 — Suma de amount de un user_id en el ultimo mes ===
+
+-- SQL (SQLite) --
+SELECT SUM(amount) FROM transactions WHERE user_id = ? AND timestamp >= ?
+
+-- SIN indices --
+  [3|0] SCAN transactions
+
+-- CON indices --
+  [4|0] SEARCH transactions USING INDEX idx_txns_user_timestamp (user_id=? AND timestamp>?)
+
+-- DuckDB EXPLAIN --
+┌───────────────────────────┐
+│    UNGROUPED_AGGREGATE    │
+│    ────────────────────   │
+│    Aggregates: sum(#0)    │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│           amount          │
+│                           │
+│       ~200,000 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│        READ_PARQUET       │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│    Projections: amount    │
+│                           │
+│          Filters:         │
+│ timestamp>='2026-04-15 15 │
+│     :05:29'::TIMESTAMP    │
+│        user_id=2167       │
+│                           │
+│       ~200,000 rows       │
+└───────────────────────────┘
+
+
+
+=== P5 — user_id de un country_code con > 20 transacciones ===
+
+-- SQL (SQLite) --
+SELECT user_id, COUNT(*) AS n FROM transactions WHERE country_code = ? GROUP BY user_id HAVING COUNT(*) > ?
+
+-- SIN indices --
+  [6|0] SCAN transactions
+  [10|0] USE TEMP B-TREE FOR GROUP BY
+
+-- CON indices --
+  [6|0] SEARCH transactions USING COVERING INDEX idx_txns_country_user (country_code=?)
+
+-- DuckDB EXPLAIN --
+┌───────────────────────────┐
+│           FILTER          │
+│    ────────────────────   │
+│    (count_star() > 20)    │
+│                           │
+│        ~36,253 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│__internal_decompress_integ│
+│     ral_integer(#0, 1)    │
+│             #1            │
+│                           │
+│       ~181,269 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│       HASH_GROUP_BY       │
+│    ────────────────────   │
+│         Groups: #0        │
+│                           │
+│        Aggregates:        │
+│        count_star()       │
+│                           │
+│       ~181,269 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│          user_id          │
+│                           │
+│       ~200,000 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│         PROJECTION        │
+│    ────────────────────   │
+│__internal_compress_integra│
+│     l_usmallint(#0, 1)    │
+│                           │
+│       ~200,000 rows       │
+└─────────────┬─────────────┘
+┌─────────────┴─────────────┐
+│        READ_PARQUET       │
+│    ────────────────────   │
+│         Function:         │
+│        READ_PARQUET       │
+│                           │
+│    Projections: user_id   │
+│                           │
+│          Filters:         │
+│     country_code='AR'     │
+│                           │
+│       ~200,000 rows       │
+└───────────────────────────┘
+
+
+
