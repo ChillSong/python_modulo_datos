@@ -46,7 +46,7 @@ def parse_args() -> argparse.Namespace:
         "--repetitions",
         type=int,
         default=3,
-        help="Repeticiones de la escritura para promediar (default 3).",
+        help="Repeticiones de escritura, lectura completa y lectura selectiva (default 3).",
     )
     parser.add_argument(
         "--selective-columns",
@@ -60,10 +60,12 @@ def parse_args() -> argparse.Namespace:
 def _format_result_line(result) -> str:
     return (
         f"  write_mean={result.write_seconds_mean:.3f}s "
-        f"read={result.read_full_seconds:.3f}s "
-        f"selective={result.read_selective_seconds:.3f}s "
+        f"read_mean={result.read_full_seconds_mean:.3f}s "
+        f"read_min={result.read_full_seconds_min:.3f}s "
+        f"sel_mean={result.read_selective_seconds_mean:.3f}s "
         f"size={result.file_size_bytes / 1e6:.2f}MB "
-        f"peak_ram={result.read_peak_memory_bytes / 1e6:.2f}MB"
+        f"tracemalloc={result.read_peak_memory_tracemalloc_bytes / 1e6:.2f}MB "
+        f"rss_delta={result.read_rss_delta_bytes / 1e6:.2f}MB"
     )
 
 
