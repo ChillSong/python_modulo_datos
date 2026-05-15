@@ -55,17 +55,17 @@ def main() -> None:
     print("Generando graficas...")
     grouped_bar(
         data,
-        title="Tiempo de lectura completa por formato",
+        title="Tiempo de lectura completa (promedio de 3 reps)",
         ylabel="Segundos (escala log)",
-        value_fn=lambda r: r["read_full_seconds"],
+        value_fn=lambda r: r["read_full_seconds_mean"],
         filename="read_full_time.png",
         log=True,
     )
     grouped_bar(
         data,
-        title="Tiempo de lectura selectiva (amount + category)",
+        title="Tiempo de lectura selectiva (promedio de 3 reps; amount + category)",
         ylabel="Segundos (escala log)",
-        value_fn=lambda r: r["read_selective_seconds"],
+        value_fn=lambda r: r["read_selective_seconds_mean"],
         filename="read_selective_time.png",
         log=True,
     )
@@ -78,10 +78,25 @@ def main() -> None:
     )
     grouped_bar(
         data,
-        title="Tiempo de escritura (promedio de 3 repeticiones)",
+        title="Tiempo de escritura (promedio de 3 reps)",
         ylabel="Segundos (escala log)",
         value_fn=lambda r: r["write_seconds_mean"],
         filename="write_time.png",
+        log=True,
+    )
+    grouped_bar(
+        data,
+        title="Delta de RSS durante lectura completa (psutil)",
+        ylabel="Megabytes",
+        value_fn=lambda r: r["read_rss_delta_bytes"] / 1e6,
+        filename="read_rss_delta.png",
+    )
+    grouped_bar(
+        data,
+        title="Pico de heap de Python durante lectura (tracemalloc)",
+        ylabel="Megabytes (escala log)",
+        value_fn=lambda r: max(r["read_peak_memory_tracemalloc_bytes"] / 1e6, 0.01),
+        filename="read_tracemalloc_peak.png",
         log=True,
     )
 
