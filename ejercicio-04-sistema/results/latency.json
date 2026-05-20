@@ -1,0 +1,85 @@
+{
+  "reps": 100,
+  "timestamp": "2026-05-19T22:56:02",
+  "note": "in-process TestClient; latencias sin salto de red, ratio cold/warm fiel",
+  "sla_ms": {
+    "/analytics/summary": {
+      "cold": 500,
+      "warm": 20
+    },
+    "/analytics/top-merchants": {
+      "cold": 500,
+      "warm": 20
+    },
+    "/users/{id}/transactions": {
+      "single": 80
+    },
+    "/users/{id}/stats": {
+      "single": 80
+    },
+    "/health": {
+      "single": 50
+    }
+  },
+  "results": {
+    "/analytics/summary": {
+      "cold": {
+        "mean": 46.221,
+        "p50": 45.588,
+        "p95": 50.953,
+        "p99": 52.768,
+        "max": 52.775
+      },
+      "warm": {
+        "mean": 0.634,
+        "p50": 0.599,
+        "p95": 0.882,
+        "p99": 1.545,
+        "max": 1.55
+      }
+    },
+    "/analytics/top-merchants": {
+      "cold": {
+        "mean": 21.949,
+        "p50": 19.225,
+        "p95": 22.028,
+        "p99": 270.465,
+        "max": 272.948
+      },
+      "warm": {
+        "mean": 0.73,
+        "p50": 0.668,
+        "p95": 1.038,
+        "p99": 1.261,
+        "max": 1.261
+      }
+    },
+    "/users/{id}/transactions": {
+      "single": {
+        "mean": 0.716,
+        "p50": 0.667,
+        "p95": 0.977,
+        "p99": 1.295,
+        "max": 1.297
+      }
+    },
+    "/users/{id}/stats": {
+      "single": {
+        "mean": 0.659,
+        "p50": 0.625,
+        "p95": 0.93,
+        "p99": 1.363,
+        "max": 1.367
+      }
+    },
+    "/health": {
+      "single": {
+        "mean": 0.683,
+        "p50": 0.641,
+        "p95": 1.044,
+        "p99": 1.243,
+        "max": 1.243
+      }
+    }
+  }
+}
