@@ -5,6 +5,8 @@ description = "Modulo: Python para Sistemas de Datos Modernos — Storage, Query
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "django>=6.0.5",
+    "djangorestframework>=3.17.1",
     "duckdb>=1.5.2",
     "fastapi>=0.136.1",
     "httpx>=0.28.1",
@@ -19,4 +21,5 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=9.0.3",
+    "pytest-django>=4.12.0",
 ]
