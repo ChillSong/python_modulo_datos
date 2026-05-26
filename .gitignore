@@ -27,6 +27,11 @@ data/
 # las carpetas results/ son entregables y deben commitearse,
 # por eso *.json NO está en este .gitignore.
 
+# Documentos internos / no se entregan al repo
+CLAUDE.md
+Antonio_Garcia_E*.md
+tareas_modulo_estudiantes*.pdf
+
 # Editor / OS
 .vscode/
 .idea/
