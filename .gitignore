@@ -32,6 +32,12 @@ CLAUDE.md
 Antonio_Garcia_E*.md
 tareas_modulo_estudiantes*.pdf
 
+# E6 — artefactos generados por el pipeline (per-run, no se commitean)
+ejercicio-06-pipelines/db/
+ejercicio-06-pipelines/quarantine/
+ejercicio-06-pipelines/results/
+ejercicio-06-pipelines/inbox/
+
 # Editor / OS
 .vscode/
 .idea/
