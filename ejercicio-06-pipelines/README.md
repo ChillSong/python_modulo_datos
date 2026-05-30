@@ -158,3 +158,7 @@ ejercicio-06-pipelines/
 ├── results/                    # gitignored — un JSON por corrida
 └── README.md
 ```
+
+## Tiempo dedicado
+
+Aproximadamente **8 horas** (no continuas).
