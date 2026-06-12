@@ -8,6 +8,9 @@ idx_country_user).  No depende de E3 — el evaluador corre solo este script.
 La ingesta es chunked con una transaccion por chunk (mismo patron que E3),
 y deja la base en WAL para que la API pueda leer y escribir concurrentemente.
 
+Lee el Parquet via DuckDB (que ya es dependencia del proyecto) para evitar
+instalar pyarrow/pandas en el contenedor Docker y mantener la imagen < 300 MB.
+
 Uso:
     uv run python ejercicio-04-sistema/setup_db.py
     uv run python ejercicio-04-sistema/setup_db.py --parquet <path> --db <path>
@@ -20,7 +23,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-import pyarrow.parquet as pq
+import duckdb
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_PARQUET = HERE.parent / "data" / "benchmark_1m" / "transactions.snappy.parquet"
@@ -87,17 +90,30 @@ def build(parquet: Path, db_path: Path, chunk_size: int) -> dict[str, float]:
     cur.executescript(SCHEMA)
     con.commit()
 
-    pf = pq.ParquetFile(parquet)
+    # DuckDB reads Parquet natively — no pyarrow/pandas dependency needed.
+    # strftime with %f produces 6-digit microseconds, matching the format
+    # that the API uses when parsing timestamps from SQLite.
+    duck = duckdb.connect(":memory:")
+    duck.execute(f"CREATE VIEW txns AS SELECT * FROM read_parquet('{parquet}')")
+
     total = 0
+    offset = 0
     t0 = time.perf_counter()
-    for batch in pf.iter_batches(batch_size=chunk_size):
-        df = batch.to_pandas()
-        df["timestamp"] = df["timestamp"].dt.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        rows = list(df[COLUMNS].itertuples(index=False, name=None))
+    while True:
+        rows = duck.execute(
+            f"SELECT transaction_id, "
+            f"strftime(timestamp::TIMESTAMP, '%Y-%m-%dT%H:%M:%S.%f'), "
+            f"user_id, merchant_id, amount, category, country_code, status "
+            f"FROM txns LIMIT {chunk_size} OFFSET {offset}"
+        ).fetchall()
+        if not rows:
+            break
         cur.execute("BEGIN")
         cur.executemany(INSERT_SQL, rows)
         con.commit()
         total += len(rows)
+        offset += chunk_size
+    duck.close()
     ingest_s = time.perf_counter() - t0
 
     t1 = time.perf_counter()
