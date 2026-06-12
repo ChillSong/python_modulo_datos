@@ -1,0 +1,43 @@
+services:
+
+  # ── setup ─────────────────────────────────────────────────────────────────
+  # Runs once: reads Parquet from the data bind-mount, builds SQLite in db_vol.
+  # The api service does not start until this completes successfully.
+  setup:
+    build:
+      context: ..
+      dockerfile: ejercicio-07-contenedores/Dockerfile
+    command:
+      - python
+      - /app/ejercicio-04-sistema/setup_db.py
+      - --parquet
+      - /data/benchmark_1m/transactions.snappy.parquet
+      - --db
+      - /db/transactions.db
+    volumes:
+      - ${DATA_DIR:-../data}:/data:ro
+      - db_vol:/db
+    restart: "no"
+
+  # ── api ───────────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: ..
+      dockerfile: ejercicio-07-contenedores/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      E4_PARQUET: /data/benchmark_1m/transactions.snappy.parquet
+      E4_DB: /db/transactions.db
+      CACHE_TTL_SUMMARY: ${CACHE_TTL_SUMMARY:-30}
+      CACHE_TTL_TOP_MERCHANTS: ${CACHE_TTL_TOP_MERCHANTS:-30}
+    volumes:
+      - ${DATA_DIR:-../data}:/data:ro
+      - db_vol:/db
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  db_vol:
