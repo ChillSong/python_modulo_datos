@@ -1,0 +1,27 @@
+# Datasets — never baked into the image; provided at runtime via volume mounts
+data/
+**/*.csv
+**/*.parquet
+**/*.db
+**/*.db-wal
+**/*.db-shm
+**/*.sqlite
+**/*.sqlite3
+
+# Python artifacts
+**/__pycache__/
+**/*.py[oc]
+**/.pytest_cache/
+
+# Virtual environments
+.venv/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Dev / docs
+Antonio_Garcia_E*.md
+tareas_modulo_estudiantes*.pdf
+CLAUDE.md
