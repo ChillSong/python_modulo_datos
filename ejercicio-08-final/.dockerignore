@@ -1,0 +1,21 @@
+# Datos generados — se montan como volumenes en runtime
+db/
+quarantine/
+results/
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+
+# Entorno virtual local
+.venv/
+
+# Env files con valores reales
+.env
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

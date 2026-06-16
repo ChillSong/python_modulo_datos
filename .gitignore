@@ -41,6 +41,12 @@ ejercicio-06-pipelines/inbox/
 # E7 — artefactos Docker (no se commitean)
 ejercicio-07-contenedores/.env
 
+# E8 — artefactos generados (per-run, no se commitean)
+ejercicio-08-final/db/
+ejercicio-08-final/quarantine/
+ejercicio-08-final/results/
+ejercicio-08-final/.env
+
 # Editor / OS
 .vscode/
 .idea/

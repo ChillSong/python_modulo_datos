@@ -1,0 +1,38 @@
+services:
+
+  # Corre una vez: construye el SQLite transaccional desde el Parquet del E1.
+  # La API no arranca hasta que este servicio termine con exito.
+  setup:
+    build: .
+    command:
+      - python
+      - /app/setup_db.py
+      - --parquet
+      - /data/benchmark_1m/transactions.snappy.parquet
+      - --db
+      - /db/transactions.db
+    volumes:
+      - ${DATA_DIR:-../data}:/data:ro
+      - db_vol:/db
+    restart: "no"
+
+  api:
+    build: .
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      PARQUET_PATH: /data/benchmark_1m/transactions.snappy.parquet
+      DB_PATH: /db/transactions.db
+      CACHE_TTL_SUMMARY: ${CACHE_TTL_SUMMARY:-30}
+      CACHE_TTL_TOP_MERCHANTS: ${CACHE_TTL_TOP_MERCHANTS:-30}
+      CACHE_TTL_ANOMALIES: ${CACHE_TTL_ANOMALIES:-30}
+    volumes:
+      - ${DATA_DIR:-../data}:/data:ro
+      - db_vol:/db
+    depends_on:
+      setup:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+volumes:
+  db_vol:
